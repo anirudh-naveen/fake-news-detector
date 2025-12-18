@@ -1,5 +1,3 @@
-numpy>=1.21.0
-pandas>=1.3.0
-tensorflow>=2.8.0
-scikit-learn>=1.0.0
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:a1c6b9536452a2bd4cb2a9f769f137ec826e45b80e33b22f64d1744dea61f58b
+size 67
