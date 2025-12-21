@@ -10,7 +10,8 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # dataset import & processing
 data = pd.read_csv("news.csv")
-data = data.drop(["Unnamed: 0"], axis=1)
+if "Unnamed: 0" in data.columns:
+    data = data.drop(["Unnamed: 0"], axis=1)
 print(data.head(5))
 
 
@@ -44,7 +45,7 @@ tokenizer1.fit_on_texts(title)
 word_index1 = tokenizer1.word_index
 vocab_size1 = len(word_index1)
 sequences1 = tokenizer1.texts_to_sequences(title)
-padded1 = pad_sequences(sequences1, padding=padding_type, truncating=trunc_type)
+padded1 = pad_sequences(sequences1, maxlen=max_length, padding=padding_type, truncating=trunc_type)
 
 
 # data splitting
