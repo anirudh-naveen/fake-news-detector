@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  fake-news-detector:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./fake_news_model.h5:/app/fake_news_model.h5
+      - ./tokenizer.pickle:/app/tokenizer.pickle
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+

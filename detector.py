@@ -28,11 +28,12 @@ def main():
     
     # Step 2: Prepare data for training
     print("\n[Step 2] Preparing data for training...")
-    titles, texts, labels = prep.prepare_data(data, config.TRAINING_SIZE)
+    # Set use_text=True to use article text, False for titles only
+    texts, labels = prep.prepare_data(data, config.TRAINING_SIZE, use_text=True)
     
     # Step 3: Tokenize and pad sequences
     print("\n[Step 3] Tokenizing and padding sequences...")
-    tokenizer, padded_sequences, vocab_size = prep.tokenize_and_pad(titles)
+    tokenizer, padded_sequences, vocab_size = prep.tokenize_and_pad(texts)
     
     # Step 4: Split data
     print("\n[Step 4] Splitting data into train/test sets...")

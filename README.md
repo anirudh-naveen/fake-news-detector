@@ -12,12 +12,14 @@ This project implements a fake news detection system using:
 
 # Features
 
-- Pre-trained GloVe word embeddings for better text understanding
-- CNN-LSTM hybrid architecture for feature extraction and sequence modeling
-- Comprehensive model evaluation with confusion matrix and classification report
-- Model persistence (save/load trained model)
-- Training visualization (accuracy and loss plots)
-- Easy-to-use prediction function for new articles
+- **Web Interface**: Interactive Streamlit web app for real-time predictions
+- **Pre-trained Embeddings**: GloVe word embeddings for better text understanding
+- **Deep Learning**: CNN-LSTM hybrid architecture for feature extraction and sequence modeling
+- **Model Evaluation**: Comprehensive metrics with confusion matrix and classification report
+- **Model Persistence**: Save/load trained model for reuse
+- **Visualization**: Training history plots and prediction confidence scores
+- **Docker Support**: Containerized deployment for easy setup
+- **API Ready**: Python functions for integration into other applications
 
 # Technologies Used
 
@@ -26,7 +28,9 @@ This project implements a fake news detection system using:
 - **NumPy & Pandas**: Data manipulation
 - **Scikit-learn**: Model evaluation metrics
 - **Matplotlib**: Visualization
+- **Streamlit**: Web application framework
 - **GloVe Embeddings**: Pre-trained word vectors (50-dimensional)
+- **Docker**: Containerization (optional)
 
 # Installation
 
@@ -80,13 +84,27 @@ This will:
 
 ## Making Predictions
 
+### Option 1: Web Interface (Recommended)
+
+Launch the interactive web application:
+
+```bash
+streamlit run app.py
+```
+
+Then open your browser to `http://localhost:8501` and enter news text to get instant predictions!
+
+### Option 2: Command Line
+
 Use the prediction script to classify new news articles:
 
 ```bash
 python predict.py
 ```
 
-Or use the prediction function in your code:
+### Option 3: Python API
+
+Use the prediction function in your code:
 
 ```python
 from predict import predict_news, load_model
@@ -98,6 +116,19 @@ model, tokenizer = load_model()
 text = "Your news article text here"
 result, confidence = predict_news(text, model, tokenizer)
 print(f"Prediction: {result} (Confidence: {confidence:.4f})")
+```
+
+### Option 4: Docker
+
+Run using Docker:
+
+```bash
+# Build and run
+docker-compose up --build
+
+# Or using Docker directly
+docker build -t fake-news-detector .
+docker run -p 8501:8501 fake-news-detector
 ```
 
 # Model Architecture

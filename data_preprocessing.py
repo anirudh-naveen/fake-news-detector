@@ -48,38 +48,52 @@ def encode_labels(data):
     return data, le
 
 
-def prepare_data(data, training_size=config.TRAINING_SIZE):
+def prepare_data(data, training_size=config.TRAINING_SIZE, use_text=True, max_words=None):
     """
     Extract titles, texts, and labels from dataset.
     
     Args:
         data: DataFrame with 'title', 'text', and 'label' columns
         training_size: Number of samples to use
+        use_text: If True, use article text; if False, use only titles
+        max_words: Maximum words to use from text (None = use all, or specify number)
     
     Returns:
-        tuple: (titles, texts, labels)
+        tuple: (texts, labels) - texts can be titles or article text
     """
     print(f"\nPreparing {training_size} samples...")
-    title = []
-    text = []
+    texts = []
     labels = []
     
+    if max_words is None:
+        max_words = config.MAX_LENGTH
+    
     for x in range(training_size):
-        title.append(data['title'][x])
-        text.append(data['text'][x])
+        if use_text and 'text' in data.columns:
+            # Use article text (truncate to max_words)
+            article_text = str(data['text'][x])
+            words = article_text.split()[:max_words]
+            texts.append(" ".join(words))
+        else:
+            # Use only title
+            texts.append(str(data['title'][x]))
+        
         labels.append(data['label'][x])
     
-    print(f"Prepared {len(title)} samples")
-    return title, text, labels
+    print(f"Prepared {len(texts)} samples")
+    if use_text:
+        avg_length = sum(len(t.split()) for t in texts) / len(texts)
+        print(f"Average text length: {avg_length:.1f} words")
+    return texts, labels
 
 
-def tokenize_and_pad(titles, padding_type=config.PADDING_TYPE, 
+def tokenize_and_pad(texts, padding_type=config.PADDING_TYPE, 
                      trunc_type=config.TRUNC_TYPE, max_length=config.MAX_LENGTH):
     """
     Tokenize text and pad sequences.
     
     Args:
-        titles: List of title strings
+        texts: List of text strings (titles or article text)
         padding_type: Padding type ('pre' or 'post')
         trunc_type: Truncation type ('pre' or 'post')
         max_length: Maximum sequence length
@@ -89,15 +103,16 @@ def tokenize_and_pad(titles, padding_type=config.PADDING_TYPE,
     """
     print("\nTokenizing text...")
     tokenizer = Tokenizer()
-    tokenizer.fit_on_texts(titles)
+    tokenizer.fit_on_texts(texts)
     word_index = tokenizer.word_index
     vocab_size = len(word_index)
     
-    sequences = tokenizer.texts_to_sequences(titles)
-    padded = pad_sequences(sequences, padding=padding_type, truncating=trunc_type)
+    sequences = tokenizer.texts_to_sequences(texts)
+    padded = pad_sequences(sequences, maxlen=max_length, padding=padding_type, truncating=trunc_type)
     
     print(f"Vocabulary size: {vocab_size}")
     print(f"Padded sequences shape: {padded.shape}")
+    print(f"Max sequence length: {max_length}")
     
     return tokenizer, padded, vocab_size
 
