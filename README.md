@@ -122,7 +122,7 @@ Dense (1 unit, sigmoid activation)
 Output (REAL/FAKE)
 ```
 
-# 📈 Model Performance
+# Model Performance
 
 The model is trained on 3,000 news articles with:
 - **Training Set**: 2,700 samples
