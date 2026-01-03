@@ -17,13 +17,13 @@ def load_model():
         # Load the model
         print("Loading model...")
         model = tf.keras.models.load_model(config.MODEL_FILE)
-        print("✓ Model loaded successfully")
+        print("Model loaded successfully")
         
         # Load the tokenizer
         print("Loading tokenizer...")
         with open(config.TOKENIZER_FILE, 'rb') as handle:
             tokenizer = pickle.load(handle)
-        print("✓ Tokenizer loaded successfully\n")
+        print("Tokenizer loaded successfully\n")
         
         return model, tokenizer
     except FileNotFoundError as e:

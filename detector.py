@@ -97,12 +97,12 @@ def main():
         print("Result: This news is FAKE")
     
     print("\n" + "="*60)
-    print("✓ Training pipeline completed successfully!")
+    print("Training pipeline completed successfully!")
     print("="*60)
     print(f"\nSaved files:")
-    print(f"  - Model: {config.MODEL_FILE}")
-    print(f"  - Tokenizer: {config.TOKENIZER_FILE}")
-    print(f"  - Training plot: {config.HISTORY_PLOT_FILE}")
+    print(f" - Model: {config.MODEL_FILE}")
+    print(f" - Tokenizer: {config.TOKENIZER_FILE}")
+    print(f" - Training plot: {config.HISTORY_PLOT_FILE}")
 
 
 if __name__ == "__main__":

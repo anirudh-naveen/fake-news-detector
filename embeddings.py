@@ -27,7 +27,7 @@ def load_glove_embeddings(file_path=config.GLOVE_FILE):
             coefs = np.asarray(values[1:], dtype='float32')
             embedding_index[word] = coefs
     
-    print(f"✓ Loaded {len(embedding_index)} word vectors from GloVe")
+    print(f"Loaded {len(embedding_index)} word vectors from GloVe")
     return embedding_index
 
 
@@ -56,8 +56,8 @@ def create_embedding_matrix(word_index, embedding_index, vocab_size,
                 embedding_matrix[i] = embedding_vector
                 words_found += 1
     
-    print(f"✓ Created embedding matrix: {embedding_matrix.shape}")
-    print(f"✓ Found GloVe vectors for {words_found}/{vocab_size} words in vocabulary")
+    print(f"Created embedding matrix: {embedding_matrix.shape}")
+    print(f"Found GloVe vectors for {words_found}/{vocab_size} words in vocabulary")
     
     return embedding_matrix
 

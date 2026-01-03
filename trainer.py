@@ -36,7 +36,7 @@ def train_model(model, training_sequences, training_labels,
         verbose=2
     )
     
-    print("✓ Training completed")
+    print("Training completed")
     return history
 
 
@@ -91,10 +91,10 @@ def save_model(model, tokenizer, model_file=config.MODEL_FILE,
     
     # Save model
     model.save(model_file)
-    print(f"✓ Model saved to {model_file}")
+    print(f"Model saved to {model_file}")
     
     # Save tokenizer
     with open(tokenizer_file, 'wb') as handle:
         pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
-    print(f"✓ Tokenizer saved to {tokenizer_file}")
+    print(f"Tokenizer saved to {tokenizer_file}")
 

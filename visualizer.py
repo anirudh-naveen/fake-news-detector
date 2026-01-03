@@ -39,5 +39,5 @@ def plot_training_history(history, save_path=config.HISTORY_PLOT_FILE):
     
     plt.tight_layout()
     plt.savefig(save_path)
-    print(f"✓ Training history plot saved to {save_path}")
+    print(f"Training history plot saved to {save_path}")
 

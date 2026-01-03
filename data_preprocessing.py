@@ -44,7 +44,7 @@ def encode_labels(data):
     le = preprocessing.LabelEncoder()
     le.fit(data['label'])
     data['label'] = le.transform(data['label'])
-    print("✓ Labels encoded")
+    print("Labels encoded")
     return data, le
 
 
@@ -69,7 +69,7 @@ def prepare_data(data, training_size=config.TRAINING_SIZE):
         text.append(data['text'][x])
         labels.append(data['label'][x])
     
-    print(f"✓ Prepared {len(title)} samples")
+    print(f"Prepared {len(title)} samples")
     return title, text, labels
 
 
@@ -96,8 +96,8 @@ def tokenize_and_pad(titles, padding_type=config.PADDING_TYPE,
     sequences = tokenizer.texts_to_sequences(titles)
     padded = pad_sequences(sequences, padding=padding_type, truncating=trunc_type)
     
-    print(f"✓ Vocabulary size: {vocab_size}")
-    print(f"✓ Padded sequences shape: {padded.shape}")
+    print(f"Vocabulary size: {vocab_size}")
+    print(f"Padded sequences shape: {padded.shape}")
     
     return tokenizer, padded, vocab_size
 
@@ -128,8 +128,8 @@ def split_data(padded_sequences, labels, test_portion=config.TEST_PORTION,
     training_sequences = np.array(training_sequences)
     test_sequences = np.array(test_sequences)
     
-    print(f"✓ Training samples: {len(training_sequences)}")
-    print(f"✓ Test samples: {len(test_sequences)}")
+    print(f"Training samples: {len(training_sequences)}")
+    print(f"Test samples: {len(test_sequences)}")
     
     return training_sequences, test_sequences, training_labels, test_labels
 
