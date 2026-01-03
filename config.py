@@ -5,7 +5,7 @@ Contains all hyperparameters and settings
 
 # Model hyperparameters
 EMBEDDING_DIM = 50
-MAX_LENGTH = 2000
+MAX_LENGTH = 500
 PADDING_TYPE = 'post'
 TRUNC_TYPE = 'post'
 OOV_TOK = "<OOV>"

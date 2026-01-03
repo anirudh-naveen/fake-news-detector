@@ -31,10 +31,14 @@ def build_model(vocab_size, embedding_matrix, embedding_dim=config.EMBEDDING_DIM
             weights=[embedding_matrix], 
             trainable=False
         ),
-        tf.keras.layers.Dropout(0.2),
-        tf.keras.layers.Conv1D(64, 5, activation='relu'),
+        tf.keras.layers.Dropout(0.3),  
+        tf.keras.layers.Conv1D(128, 5, activation='relu'), 
         tf.keras.layers.MaxPooling1D(pool_size=4),
-        tf.keras.layers.LSTM(64),
+        tf.keras.layers.LSTM(128, return_sequences=True), 
+        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.LSTM(64), 
+        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.Dense(32, activation='relu'), 
         tf.keras.layers.Dense(1, activation='sigmoid')
     ])
     
