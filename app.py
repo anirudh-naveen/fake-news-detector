@@ -67,7 +67,7 @@ with st.sidebar:
     st.header("Model Info")
     st.write(f"**Max Length:** {config.MAX_LENGTH} words")
     st.write(f"**Embedding Dim:** {config.EMBEDDING_DIM}")
-    st.write("**Accuracy:** ~74% (test set)")
+    st.write("**Accuracy:** ~90% (test set)")
 
 # Load model (cached)
 @st.cache_resource
@@ -86,7 +86,7 @@ text_input = st.text_area(
 )
 
 # Prediction button
-if st.button("🔍 Analyze News", type="primary", use_container_width=True):
+if st.button("Analyze News", type="primary", use_container_width=True):
     if not text_input.strip():
         st.warning("Please enter some text to analyze.")
     else:
@@ -105,7 +105,8 @@ if st.button("🔍 Analyze News", type="primary", use_container_width=True):
                 st.header("Prediction Result")
                 
                 # Confidence bar
-                st.progress(confidence if label == "REAL" else (1 - confidence))
+                progress_value = float(confidence if label == "REAL" else (1 - confidence))
+                st.progress(progress_value)
                 
                 # Result box
                 if label == "REAL":
@@ -133,15 +134,6 @@ if st.button("🔍 Analyze News", type="primary", use_container_width=True):
                     st.write(f"**Threshold:** 0.5 (≥0.5 = REAL, <0.5 = FAKE)")
                     st.write(f"**Text Length:** {len(text_input)} characters")
                     st.write(f"**Word Count:** {len(text_input.split())} words")
-
-# Auto-fill text area if example selected
-if 'example_text' in st.session_state:
-    text_input = st.text_area(
-        "Paste news headline or article text here:",
-        value=st.session_state.example_text,
-        height=150
-    )
-    del st.session_state.example_text
 
 # Footer
 st.markdown("---")
