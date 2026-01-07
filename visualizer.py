@@ -1,5 +1,5 @@
 """
-Visualization Module
+Visualization
 Creates plots for training history
 """
 
@@ -15,7 +15,7 @@ def plot_training_history(history, save_path=config.HISTORY_PLOT_FILE):
         history: Training history object from model.fit()
         save_path: Path to save the plot
     """
-    print("\n=== Generating Training Visualization ===")
+    print("\n Generating Training Visualization: ")
     
     plt.figure(figsize=(12, 4))
     
