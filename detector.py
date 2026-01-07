@@ -1,6 +1,6 @@
 """
 Fake News Detection - Main Training Script
-Orchestrates the entire training pipeline using modular components
+Contains the entire training pipeline 
 """
 
 from tensorflow.keras.preprocessing.sequence import pad_sequences

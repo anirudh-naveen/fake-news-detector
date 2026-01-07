@@ -11,7 +11,7 @@ TRUNC_TYPE = 'post'
 OOV_TOK = "<OOV>"
 
 # Training parameters
-TRAINING_SIZE = 3000
+TRAINING_SIZE = 6335
 TEST_PORTION = 0.1
 EPOCHS = 50
 
