@@ -12,7 +12,7 @@ from predict import load_model, predict_news
 # Page configuration
 st.set_page_config(
     page_title="Fake News Detector",
-    page_icon="📰",
+    page_icon="",
     layout="wide"
 )
 
