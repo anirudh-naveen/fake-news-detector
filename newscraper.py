@@ -1,5 +1,8 @@
 from dotenv import load_dotenv
 import os
+import requests
+import pandas as pd
+import time
 
 load_dotenv()
 
@@ -24,6 +27,10 @@ def scrape_real_news(query, pages=10):
         }
 
         response = requests.get(url, params=params)
+        if response.status_code != 200:
+            print(f"Error on page {page}: {response.status_code}")
+            print(f"Response: {response.text}")
+            break
         data = response.json()
 
         if 'articles' in data:
@@ -31,7 +38,7 @@ def scrape_real_news(query, pages=10):
                 if article['title'] and article['content']:
                     articles.append({
                         'title': article['title'],
-                        'data': article['content'] or article['description'],
+                        'text': article['content'] or article['description'],
                         'label': 'REAL'
                     })
         
